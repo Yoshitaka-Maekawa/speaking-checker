@@ -1,0 +1,33 @@
+#recording
+  h1.mt-4 id="question-text" = question.english_text
+  // v-ifで条件に合致するボタンを表示。@clickでjsファイルで定義したmethodsを呼び出す。@click は v-on:clickと同じ
+  button.btn.btn-lg.btn-secondary.mt-5.mb-4 type="button" id="button-start" v-if="status=='ready'" @click="startRecording" <i class="fas fa-microphone"></i>  <br> ボタンを押して発音をチェック!!
+  button.btn.btn-lg.btn-secondary.mt-5.mb-4 type="button" id="button-start" v-show="status=='recording'" disabled="true" <i class="fas fa-spinner fa-spin"></i> 録音中です。<br>1秒後に英語を発音してください。
+
+  div style="display:none;" class="pronounciation-result mb-4 accordion" id="pronounciation-accordion"
+    .accordion-item
+      #headingOne.accordion-header
+        button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne"
+          = "発音結果表示"
+      div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#pronounciation-accordion"
+        .accordion-body
+          canvas id="myChart" class="chartjs-render-monitor"
+
+  div style="display:none;" class="syllables-result mb-4 accordion" id="syllable-accordion"
+    .accordion-item
+      #headingOne.accordion-header
+        button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo"
+          = "音節結果表示"
+      div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#syllable-accordion"
+        .accordion-body
+          .card
+            table.table id="syllable-table"
+                tr
+                  th 問題文の各音節
+                  th 音節の発音精度
+
+  button.btn.btn-lg.btn-primary.mb-4 type="button" id="button-voice" v-show="status=='finish_recording'" @click="sampleVoice" サンプルボイスを聞いてみる
+  button.btn.btn-lg.btn-primary.mb-4 type="button" id="button-stream" v-show="status=='sample_voice'" disabled="true" <i class="fas fa-spinner fa-spin"></i> 初回のボイス再生には数秒かかります<br>3秒後に再度聴けます
+
+script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"
+= javascript_pack_tag 'voice_recording_vue'

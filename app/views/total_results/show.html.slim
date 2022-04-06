@@ -1,0 +1,37 @@
+.app.container.text-center
+  .container-result
+    h1.result-rank.mt-4 = "#{@cleared_number}問クリア！"
+    h3.my-5 = "#{@total_result.rank.message}"
+
+    .card.px-5.mb-5
+      table.table.my-3 id="syllable-table"
+        tr
+          th 問題番号
+          th 英文
+          th 発音精度
+        - @result_of_each_question.each.with_index(1) do |(english, score), index|
+          tr
+            td = "第#{index}問"
+            td = link_to english, recording_result_path(RecordingResult.where(recognized_english: english).last), class: "for-recording-result"
+            td = "#{score}点"
+
+    .card.pb-3
+      h2.my-3 ネイティブの発音を動画で確認
+      .row
+        - @youtube_data.items.sample(2).each do |item|
+          .col-lg-6.col-sm-12.movie-wrap
+              .movie-inner
+                = content_tag 'iframe', nil, width: 427, height: 240, src: "https://www.youtube.com/embed/#{item.id.video_id}", \
+                  frameborder: 0, gesture: 'media', allow: 'encrypted-media', allowfullscreen: true
+
+  .button-container
+    .button-wrapper
+      = link_to root_path, class:"button button-top button-lg" do
+        i.fas.fa-home
+        | &nbsp;トップへ
+      = link_to recording_results_path, class:"button button-top button-lg" do
+        i.fas.fa-hand-point-right
+        | &nbsp;記録を振り返る
+      = link_to @share_tweet, class:"button button-tw button-lg", target: "_blank_", rel: "nofollow"
+        i.fab.fa-twitter.fa-fw
+        | &nbsp;ツイート

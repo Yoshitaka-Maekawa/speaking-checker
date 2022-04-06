@@ -1,0 +1,11 @@
+table.table.my-3 id="results-table"
+  tr
+    th 英文
+    th 発音精度
+    th 記録日時
+  - results.each do |result|
+    tr
+      td = link_to result.recognized_english, recording_result_path(result), class: "for-recording-result"
+      td = result.average_score
+      td = l result.start_time, format: :long
+= paginate results, remote: true

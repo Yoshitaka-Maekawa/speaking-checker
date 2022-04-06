@@ -1,0 +1,4 @@
+$("#create-question").remove();
+$(".question-top").after("<%= j(render('questions/transcribe', { question: @question })) %>");
+$(".question-top").replaceWith('<h4 class="comment_text mt-2 mb-4">以下の文章を発音してください</h4>')
+$('.error-messages').remove()
