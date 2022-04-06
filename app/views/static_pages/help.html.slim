@@ -1,0 +1,34 @@
+- content_for(:title, 'Speaking Checkerとは?')
+.container
+  .help-container
+    h1.help-title.my-3 Speaking Checkerとは
+    h5.help-subtitle あなたが話した英語の発音の正確度合いを教えてくれるアプリです
+    br/
+    .question-container
+      .question-wrapper
+        .question
+          | Q. ゲームモードで次の問題に進める時と進めない時があるけど、どうなってるの？
+          br/
+          | A. 各問題の発音の正確度合いを元に、次の問題へ進めるかの判定を行なっています。<br>問題文は進めば進むほど難しくなります。
+    .question-container
+      .question-wrapper
+        .question
+          | Q. 第◯問ってあるけど、最大何問まであるの？
+          br/
+          | A. 第十問まであります。頑張って最後まで進みましょう。
+    .question-container
+      .question-wrapper
+        .question
+          | Q. 十問目まで進みたいけど、難しくて次の問題に進めない。何か方法ないの？
+          br/
+          | A. 画面を更新すると何度でも同じ問題にチャレンジできます。次へ進めるまで何度でも発音しましょう。
+    .question-container
+      .question-wrapper
+        .question
+          | Q. 分析結果に納得いかないから問い合わせ先に連絡していい？
+          br/
+          | A. 分析結果はあくまで目安であり結果は都度異なります。たとえ分析結果が期待にそぐわないものだとしても当方では一切の責任を負いかねます。
+  .text-center
+    = link_to root_path, class:"button button-top button-lg" do
+      i.fas.fa-home
+      | &nbsp;トップへ

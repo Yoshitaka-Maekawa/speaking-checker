@@ -1,0 +1,24 @@
+.app.container.text-center
+  .card.mt-4.px-3
+    h3.mt-2.mb-4.question-top = "発音したい英文を記入してください"
+    .error-messages
+    = form_with model: @question, id: "create-question", local: false do |f|
+      .d-flex.justify-content-center
+        = f.text_field :english_text, class: "form-control mb-3"
+      = f.hidden_field :phase, value: "original"
+      = f.submit "送信", class: "btn btn-outline-dark mb-2"
+
+  .button-container
+    .button-wrapper
+      = link_to root_path, class:"button button-top button-lg" do
+        i.fas.fa-home
+        | &nbsp;トップへ
+      = link_to recording_results_path, class: "button button-top button-lg button-index", style:"display:none;" do
+        i.fas.fa-hand-point-right
+        | &nbsp;記録を振り返る
+      = link_to @share_tweet, class:"button button-tw button-lg button-tweet", id: "twitter", target: "_blank_", rel: "nofollow", style:"display:none;"
+        i.fab.fa-twitter.fa-fw
+        | &nbsp;ツイート
+
+script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"
+= javascript_pack_tag 'voice_recording_vue'

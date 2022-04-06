@@ -1,0 +1,62 @@
+.app.container.text-center
+  .container-result
+    h2.mt-4 id="question-text" = @result.recognized_english
+    h3 = "の発音レベルは"
+    h1.result-rank.my-5 = "#{@result.rank.evaluation}"
+
+    #recording
+      div class="pronounciation-result mb-4 accordion" id="pronounciation-accordion"
+        .accordion-item
+          #headingOne.accordion-header
+            button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne"
+              = "発音結果表示"
+          div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#pronounciation-accordion"
+            .accordion-body
+              canvas id="myChart" class="chartjs-render-monitor"
+
+      / div class="syllables-result mb-4 accordion" id="syllable-accordion"
+        .accordion-item
+          #headingOne.accordion-header
+            button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"
+              = "発音結果表示"
+          div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#pronounciation-accordion"
+            .accordion-body
+              canvas id="myChart" class="chartjs-render-monitor"
+
+        / div class="syllables-result mb-4 accordion" id="syllable-accordion"
+          .accordion-item
+            #headingOne.accordion-header
+              button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo"
+                = "音節結果表示"
+            div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#syllable-accordion"
+              .accordion-body
+                .card
+                  table.table id="syllable-table"
+                      tr
+                        th 問題文の各音節
+                        th 音節の発音精度
+
+      button.btn.btn-lg.btn-primary.mb-4 type="button" id="button-voice" @click="sampleVoice" サンプルボイスを聞いてみる
+      button.btn.btn-lg.btn-primary.mb-4 type="button" id="button-stream" v-show="status=='sample_voice'" disabled="true" <i class="fas fa-spinner fa-spin"></i> 初回のボイス再生には数秒かかります<br>3秒後に再度聴けます
+
+    .card.pb-3
+      h2.my-3 ネイティブの発音を動画で確認
+      .row
+        - @youtube_data.items.sample(2).each do |item|
+          .col-lg-6.col-sm-12.movie-wrap
+              .movie-inner
+                = content_tag 'iframe', nil, width: 427, height: 240, src: "https://www.youtube.com/embed/#{item.id.video_id}", \
+                  frameborder: 0, gesture: 'media', allow: 'encrypted-media', allowfullscreen: true
+
+  .button-container
+    .button-wrapper
+      = link_to root_path, class:"button button-top button-lg" do
+        i.fas.fa-home
+        | &nbsp;トップへ
+      = link_to recording_results_path, class:"button button-top button-lg" do
+        i.fas.fa-hand-point-right
+        | &nbsp;記録を振り返る
+
+script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"
+= javascript_pack_tag 'voice_recording_vue'
+= javascript_pack_tag 'chart'

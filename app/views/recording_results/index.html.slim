@@ -1,0 +1,18 @@
+.app.container
+  .container-result
+    .card.px-5.mt-3.mb-5.text-center
+      = month_calendar events: @results do |date, results|
+        = date.day
+        br
+        - if results.present?
+          = link_to narrow_down_recording_results_path(date: date), class:"float-right create", remote: true do
+            i.fas.fa-star
+
+    .card.results.px-5.mb-5
+      = render "recording_results/results", {results: @paginate_results}
+
+  .button-container.text-center
+    .button-wrapper
+      = link_to root_path, class:"button button-top button-lg" do
+        i.fas.fa-home
+        | &nbsp;トップへ

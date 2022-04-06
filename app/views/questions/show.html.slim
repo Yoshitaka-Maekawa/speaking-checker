@@ -1,0 +1,18 @@
+.app.container.text-center
+  .card.mt-4.px-3
+    h1.mt-2.mb-4 = "第#{@question.phase_before_type_cast}問"
+    h4.comment_text 以下の文章を発音してください
+
+    = render 'questions/transcribe', {question: @question}
+
+  .button-container
+    .button-wrapper
+      = link_to root_path, class:"button button-top button-lg" do
+        i.fas.fa-home
+        | &nbsp;トップへ
+      = link_to question_path(@next_question), class:"button button-top button-lg button-tw next_question", style:"display:none;" do
+        i.fas.fa-hand-point-right
+        | &nbsp;次の問題へ
+      = link_to total_result_path(@total_result), class:"button button-top button-lg button-tw final_result", style:"display:none;" do
+        i.fas.fa-hand-point-right
+        | &nbsp;最終結果へ
