@@ -11,6 +11,8 @@ class UserDashboard < Administrate::BaseDashboard
     id: Field::Number,
     role: Field::Select.with_options(searchable: false, collection: ->(field) { field.resource.class.send(field.attribute.to_s.pluralize).keys }),
     email: Field::String,
+    password: Field::String,
+    password_confirmation: Field::String,
     user_digest: Field::String,
     recording_results: Field::HasMany,
     created_at: Field::DateTime,
@@ -50,6 +52,8 @@ class UserDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = %i[
     role
     email
+    password
+    password_confirmation
   ].freeze
 
   # COLLECTION_FILTERS

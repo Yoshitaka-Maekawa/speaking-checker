@@ -2,3 +2,7 @@ microsoft:
   url: 'https://japanwest.api.cognitive.microsoft.com/sts/v1.0/issueToken'
   api_key: <%= Rails.application.credentials.microsoft[:access_key_id] %>
   api_region: <%= Rails.application.credentials.microsoft[:access_key_region] %>
+admin:
+  email: <%= Rails.application.credentials.admin[:email] %>
+  password: <%= Rails.application.credentials.admin[:password] %>
+  password_confirmation: <%= Rails.application.credentials.admin[:password_confirmation] %>
