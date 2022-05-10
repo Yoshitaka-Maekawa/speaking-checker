@@ -37,6 +37,8 @@ gem 'seed-fu'
 gem 'meta-tags', :require => 'meta_tags'
 gem 'faraday'
 gem 'config'
+gem 'administrate'
+gem 'devise'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

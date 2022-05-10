@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    root to: "users#index"
+
+    resources :total_results
+    resources :recording_results
+    resources :questions
+    resources :users
+  end
+
   root 'static_pages#top'
   get '/top' => 'static_pages#top'
   get '/help' => 'static_pages#help'
@@ -6,11 +15,9 @@ Rails.application.routes.draw do
   get '/privacy' => 'static_pages#privacy'
   get '/inquiry' => 'static_pages#inquiry'
   post '/get_token' => 'static_pages#get_token'
-  resources :questions, only: %i[show create] do
-    collection do
-      get :original
-    end
-  end
+
+  devise_for :users
+  resources :questions, only: %i[show new create]
   resources :recording_results, only: %i[index show create] do
     collection do
       get :narrow_down
