@@ -1,0 +1,4 @@
+$(".comment_text").show();
+$("#recording").replaceWith("<%= j(render('questions/transcribe', { question: @question })) %>");
+$(".recommend_question").hide()
+$('.button-tweet').hide();

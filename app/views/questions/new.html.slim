@@ -1,5 +1,5 @@
 .app.container.text-center
-  .card.mt-4.px-3
+  .card.mt-4.px-3.new-question
     h3.mt-2.mb-4.question-top = "発音したい英文を記入してください"
     .error-messages
     = form_with model: @question, id: "create-question", local: false do |f|
@@ -7,6 +7,14 @@
         = f.text_field :english_text, class: "form-control mb-3"
       = f.hidden_field :phase, value: "original"
       = f.submit "送信", class: "btn btn-outline-dark mb-2"
+
+  .card.mt-4.px-3.recommend_question style="display:none;"
+    h3.mt-2.mb-4 = "他のユーザーは #{@recommended_question} の英文をよく発音しています！"
+    = form_with model: @question, url: {controller: 'questions', action: 'recommended' }, id: "create-question", local: false do |f|
+      = f.hidden_field :english_text, value: @recommended_question
+      = f.hidden_field :phase, value: "original"
+      = f.submit "#{@recommended_question}\nを発音してみる", class: "btn btn-lg btn-primary mb-4"
+
 
   .button-container
     .button-wrapper
