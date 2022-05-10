@@ -28,6 +28,9 @@ gem 'bcrypt', '~> 3.1.7'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
+gem 'net-smtp'
+gem 'net-imap'
+gem 'net-pop'
 gem 'slim-rails'
 gem 'google-api-client', '~> 0.11', require: 'google/apis/youtube_v3'
 gem 'gon'
