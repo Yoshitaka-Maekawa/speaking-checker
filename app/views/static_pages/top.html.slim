@@ -1,6 +1,7 @@
 .app.container.text-center
   h1.title-text.mt-4.mb-2 Speaking Checker
   h5 英語の発音精度分析アプリ
+  p.mb-2 ※マイクアクセスを許可してからご利用下さい。
 
   = image_tag 'standing_man.png', class: "top-image-man"
 
@@ -11,9 +12,7 @@
   .top-button
     .link-question.btn.btn-game.mb-4 = link_to "ゲームモードで腕試し", question_path(@first_question), class: "btn-game-content"
     br
-    .link-hard-question.btn.btn-voice = link_to "発音したい英文を指定する", original_questions_path, class: "btn-voice-content"
-
-  | ※マイクアクセスを許可してからご利用下さい。
+    .link-original-question.btn.btn-voice = link_to "発音したい英文を指定する", new_question_path, class: "btn-voice-content"
 
   .link
     .mt-1.mb-3 = link_to "Speaking Checkerとは?", help_path
@@ -25,4 +24,4 @@
     = link_to "お問い合わせ先", inquiry_path
     br/
     .copyright.mt-4.mb-1
-      | ©2021 Speaking Checker, Favicon made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
+      | ©2022 Speaking Checker, Favicon made from <a href="https://www.designevo.com/jp/" title="無料オンラインロゴメーカー">DesignEvo</a>
