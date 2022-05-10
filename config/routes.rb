@@ -17,10 +17,15 @@ Rails.application.routes.draw do
   post '/get_token' => 'static_pages#get_token'
 
   devise_for :users
-  resources :questions, only: %i[show new create]
+  resources :questions, only: %i[show new create] do
+    collection do
+      post :recommended
+    end
+  end
   resources :recording_results, only: %i[index show create] do
     collection do
       get :narrow_down
+      get :ranking
     end
   end
   resources :total_results, only: %i[show]
