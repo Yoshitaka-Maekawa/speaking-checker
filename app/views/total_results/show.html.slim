@@ -12,17 +12,16 @@
         - @result_of_each_question.each.with_index(1) do |(english, score), index|
           tr
             td = "第#{index}問"
-            td = link_to english, recording_result_path(RecordingResult.where(recognized_english: english).last), class: "for-recording-result"
+            td = link_to english, recording_result_path(@total_result.recording_results.where(recognized_english: english).last), class: "for-recording-result"
             td = "#{score}点"
 
     .card.pb-3
       h2.my-3 ネイティブの発音を動画で確認
       .row
         - @youtube_data.items.sample(2).each do |item|
-          .col-lg-6.col-sm-12.movie-wrap
-              .movie-inner
-                = content_tag 'iframe', nil, width: 427, height: 240, src: "https://www.youtube.com/embed/#{item.id.video_id}", \
-                  frameborder: 0, gesture: 'media', allow: 'encrypted-media', allowfullscreen: true
+          .col-lg-6.col-sm-12
+            = content_tag 'iframe', nil, width: 427, height: 240, src: "https://www.youtube.com/embed/#{item.id.video_id}", \
+              frameborder: 0, gesture: 'media', allow: 'encrypted-media', allowfullscreen: true
 
   .button-container
     .button-wrapper

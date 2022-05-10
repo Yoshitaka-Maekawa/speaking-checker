@@ -13,7 +13,7 @@ module FindVideosHelper
       page_token: next_page_token,
       video_duration: 'medium',
       published_after: 2.years.ago.iso8601,
-      published_before: Time.now.iso8601
+      published_before: Time.current.iso8601
     )
   end
 end

@@ -29,6 +29,7 @@ new Vue({
       const pronunciationAssessmentConfig = new speechsdk.PronunciationAssessmentConfig(english_text, 2, 1, false);
       pronunciationAssessmentConfig.applyTo(recognizer);
 
+      // ブラウザで発音した音声を文字起こしするAPIメソッド。この段階では文字起こし途中の段階
       recognizer.startContinuousRecognitionAsync(() => {
         timerId = setTimeout(() => {
           if (document.getElementById('button-start')) {
@@ -38,9 +39,11 @@ new Vue({
         }, 15500);
       });
 
+      // 文字起こしが完了し、文字起こしデータを返すAPIメソッド
       recognizer.recognized = (_s, e) => {
         clearTimeout(timerId);
         if (e.result.reason == speechsdk.ResultReason.RecognizedSpeech) {
+          // APIから返ってきた文字起こしデータをデータベースに保存するため、ajaxでruby側に非同期通信を実行
           $(function () {
             $.ajax({
               type: 'POST',
@@ -52,7 +55,7 @@ new Vue({
                 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
               },
             })
-            .done(function () {
+            .done(function (result) {
               const response_data = JSON.parse(this.data);
               const accuracy_score = response_data.NBest[0].PronunciationAssessment.AccuracyScore;
               const fluency_score = response_data.NBest[0].PronunciationAssessment.FluencyScore;
@@ -136,41 +139,23 @@ new Vue({
               }
 
               if (gon.question_phase == "original") {
-                if (pron_score >= 95.00) {
-                  var music = new Audio('https://soundeffect-lab.info/sound/button/mp3/decision5.mp3');
-                  $("#button-start").after(`<h2 class="comment_clear my-3" id="comment">帰国子女レベル</h2>`);
-                } else if (pron_score >= 90.00) {
-                  var music = new Audio('https://soundeffect-lab.info/sound/button/mp3/decision5.mp3');
-                  $("#button-start").after(`<h2 class="comment_close my-3" id="comment">海外旅行経験者レベル</h2>`);
-                } else if (pron_score >= 85.00) {
-                  var music = new Audio('https://soundeffect-lab.info/sound/anime/mp3/stupid4.mp3');
-                  $("#button-start").after(`<h2 class="comment_notbad my-3" id="comment">英会話スクール初学者レベル</h2>`);
-                } else if (pron_score >= 80.00) {
-                  var music = new Audio('https://soundeffect-lab.info/sound/anime/mp3/stupid4.mp3');
-                  $("#button-start").after(`<h2 class="comment_notbad my-3" id="comment">小学校高学年レベル</h2>`);
-                } else {
-                  var music = new Audio('https://soundeffect-lab.info/sound/anime/mp3/shock2.mp3');
-                  $("#button-start").after(`<h2 class="comment_gameover my-3" id="comment">チンパンジーレベル</h2>`);
-                }
-
-                function truncate(str, len) {
-                  return str.length <= len ? str : (str.substr(0, len) + "...");
-                }
-                const english_text = truncate(response_data.DisplayText, 100);
-                const rank = document.getElementById('comment').innerText;
+                const english_text = result['english_text']
+                const evaluation = result['rank']['evaluation']
+                const rank_id = result['rank']['id']
                 const twitter = document.getElementById('twitter');
                 const tweet = "https://twitter.com/intent/tweet?text="
-                  + 'あなたの' + '%0a' + `「${english_text}」` + '%0a' + 'の発音レベルは...' + '%0a%0a' + `【${rank}】です！` + '%0a%0a'
-                  + `発音の正確さ　${accuracy_score}点` + '%0a' + `発音の流暢さ　${fluency_score}点` + '%0a' + `発音の完全度　${complete_score}点`
-                  + '%0a' + '%23' + 'SpeakingChecker' + '%0a' + "&url=https://www.speaking-checker.com";
+                + 'あなたの' + '%0a' + `「${english_text}」` + '%0a' + 'の発音レベルは...' + '%0a%0a' + `【${evaluation}】です！` + '%0a%0a'
+                + `発音の正確さ　${accuracy_score}点` + '%0a' + `発音の流暢さ　${fluency_score}点` + '%0a' + `発音の完全度　${complete_score}点`
+                + '%0a' + '%23' + 'SpeakingChecker' + '%0a' + "&url=https://www.speaking-checker.com";
                 twitter.href = tweet;
+
+                $("#question-text").addClass('mt-2');
                 $("#button-start").replaceWith('<h4 class="comment_result mt-3">あなたの発音レベルは...</h4>');
+                $(".comment_result").after(`<h2 class="comment_${rank_id} my-3" id="comment">${evaluation}</h2>`);
                 $('.button-tweet').show();
               } else {
                 if (pron_score >= 90.00) {
                   $("#button-start").after('<h1 class="comment_clear my-4">クリア!</h1>');
-                  // $(".comment_clear").after(`<h4 class="comment_nextgame my-4">あなたは ${gon.question_phase} けいけんちを もらった!</h4>`);
-                  var music = new Audio('https://soundeffect-lab.info/sound/button/mp3/decision5.mp3');
                   if (gon.question_phase == 10) {
                     $('.final_result').show();
                   } else {
@@ -180,15 +165,16 @@ new Vue({
                   $("#button-start").after('<h2 class="comment_gameover my-4">ゲームオーバー!</h2>');
                   $(".comment_gameover").after('<h4 class="comment_nextgame my-4">めのまえが まっくらに なった!</h4>');
                   $('.final_result').show();
-                  var music = new Audio('https://soundeffect-lab.info/sound/anime/mp3/shock2.mp3');
                 }
                 $("#button-start").replaceWith('<h4 class="comment_result mt-3">この問題の判定結果は...</h4>');
               }
-              $(".comment_text").remove();
+              $(".comment_text").hide();
               $('#button-voice').show();
               $('.button-index').show();
               $('.pronounciation-result').show();
               $('.syllables-result').show();
+              $('.recommend_question').show();
+              var music = new Audio(result['music'])
               music.play();
 
               recognizer.stopContinuousRecognitionAsync();

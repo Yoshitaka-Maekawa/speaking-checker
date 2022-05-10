@@ -1,0 +1,11 @@
+nav.navbar.navbar-expand-md.navigation.nav-header.mx-3
+  = link_to image_tag("logo.png", class: "logo-image"), root_path, class: 'navbar-brand me-1 py-0'
+  = link_to "Speaking Checher", root_path, class: 'navbar-brand header-title me-auto'
+  button.navbar-toggler data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-expanded="false" aria-controls="navbarSupportedContent"
+    span.navbar-toggler-icon
+      i.fas.fa-bars.fa-lg
+  #navbarSupportedContent.collapse.navbar-collapse
+    ul.navbar-nav.ms-auto
+      li.nav-item
+        = link_to "ランキング", ranking_recording_results_path, class: "button header-ranking"
+        = link_to "発音履歴", recording_results_path, class: "button header-record"

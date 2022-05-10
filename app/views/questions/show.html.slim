@@ -1,7 +1,7 @@
 .app.container.text-center
   .card.mt-4.px-3
     h1.mt-2.mb-4 = "第#{@question.phase_before_type_cast}問"
-    h4.comment_text 以下の文章を発音してください
+    h4.mb-4.comment_text 以下の文章を発音してください
 
     = render 'questions/transcribe', {question: @question}
 

@@ -11,25 +11,12 @@ class RecordingResultsController < ApplicationController
     @result = RecordingResult.new
     transcribed_result = +params.to_unsafe_h.first[1].first[0]  # 文字列を解凍するために先頭に+をつけている
     @result.fetch_transcribed_parameter(transcribed_result)
-    @result.judge_rank(@result.average_score)
-    @result.start_time = DateTime.now
+    @result.judge_rank
+    @result.judge_question_id
     @result.total_result_id = session[:total_result]["id"]
-    if @result.recognized_english == Question.find_by(english_text: @result.recognized_english)&.english_text
-      @result.question_id = Question.find_by(english_text: @result.recognized_english)&.id
-    elsif ( @result.question_id.blank? && @result.recognized_english.match?(/[0-9%]/) )
-      @result.change_integer_into_string(@result.recognized_english)
-      @result.question_id = Question.find_by(english_text: @result.recognized_english)&.id
-    end
+    music = @result.judge_sound(@result.question.phase)
 
-    if @result.valid?
-      @result.save
-    else
-      flash.now[:danger] = '検証に失敗しました'
-      current_phase = Question.find_by(english_text: @result.recognized_english)&.phase_before_type_cast
-      @first_question = Question.one.sample.sample
-      @next_question = (current_phase < Question.ten.sample.phase_before_type_cast ? Question.where(phase: current_phase + 1).sample : @first_question)
-      render template: "questions/show"
-    end
+    @result.save ? (render json: { english_text: @result.recognized_english.truncate(100), rank: @result.rank, music: music }) : (render template: "questions/show")
   end
 
   def show
