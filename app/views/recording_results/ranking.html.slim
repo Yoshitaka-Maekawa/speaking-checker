@@ -1,0 +1,29 @@
+.app.container.text-center
+  .container-result
+    h1.mt-4 = "ランキング"
+    .row
+      - @each_word_ranking_in_each_phase.each do |phase, each_word_ranking|
+        .col-lg-6.col-sm-12
+          .card.my-4
+            h3.mt-3 = "第#{phase}問"
+            - each_word_ranking.each do |english_text, results|
+              table.table.my-3 id="syllable-table"
+                tr.table-secondary
+                  th 順位
+                  th 英文
+                  th 点数
+                - results.each.with_index(1) do |result, index|
+                  tr
+                    td.px-0 width="50" = index
+                    - if index == 1
+                      td rowspan="5" valign="middle" = english_text
+                    td.px-0 width="115" = "#{result.average_score}点"
+
+  .button-container
+    .button-wrapper
+      = link_to root_path, class:"button button-top button-lg" do
+        i.fas.fa-home
+        | &nbsp;トップへ
+      = link_to recording_results_path, class:"button button-top button-lg" do
+        i.fas.fa-hand-point-right
+        | &nbsp;記録を振り返る

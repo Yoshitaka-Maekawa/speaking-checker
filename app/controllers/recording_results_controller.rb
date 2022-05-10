@@ -46,4 +46,18 @@ class RecordingResultsController < ApplicationController
     @paginate_results = current_user.recording_results.where("(recording_results.created_at >= ?) AND (recording_results.created_at <= ?)", date.beginning_of_day, date.end_of_day).page(params[:page])
     @results = current_user.recording_results.where("(recording_results.created_at >= ?) AND (recording_results.created_at <= ?)", date.beginning_of_day, date.end_of_day).order(start_time: "desc")
   end
+
+  def ranking
+    question_phase = Question.where("phase >= ?", 1).order(:phase).map { |question| question.phase_before_type_cast }
+    provisional_hash1 = Hash.new
+
+    question_phase.uniq.each do |index|
+      provisional_hash2 = Hash.new
+      Question.where(phase: index).each do |question|
+        @each_word_ranking = provisional_hash2.merge!(question.english_text => RecordingResult.where(recognized_english: question.english_text).select(:id, :average_score).order(average_score: :desc).limit(5))
+      end
+
+      @each_word_ranking_in_each_phase = provisional_hash1.merge!(index => @each_word_ranking)
+    end
+  end
 end
