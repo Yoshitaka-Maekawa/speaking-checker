@@ -1,5 +1,7 @@
 #recording
-  h1.mt-4 id="question-text" = question.english_text
+  - if question.meaning.present?
+    p.mb-0.question-meaning = question.meaning
+  h1 id="question-text" = question.english_text
   // v-ifで条件に合致するボタンを表示。@clickでjsファイルで定義したmethodsを呼び出す。@click は v-on:clickと同じ
   button.btn.btn-lg.btn-secondary.mt-5.mb-4 type="button" id="button-start" v-if="status=='ready'" @click="startRecording" <i class="fas fa-microphone"></i>  <br> ボタンを押して発音をチェック!!
   button.btn.btn-lg.btn-secondary.mt-5.mb-4 type="button" id="button-start" v-show="status=='recording'" disabled="true" <i class="fas fa-spinner fa-spin"></i> 録音中です。<br>1秒後に英語を発音してください。
