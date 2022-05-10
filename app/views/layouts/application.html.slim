@@ -2,7 +2,7 @@ doctype html
 html
   head
     = display_meta_tags(default_meta_tags)
-    title = title_content(yield(:title))
+    title = 'title_content(yield(:title))'
     meta name="viewport" content="width=device-width,initial-scale=1"
     = csrf_meta_tags
     = csp_meta_tag
@@ -11,9 +11,12 @@ html
     = stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
     = render 'layouts/google_analytics' if Rails.env.production?
-    = favicon_link_tag('favicon.png')
+    = favicon_link_tag('favicon.ico')
 
   body
-    - if flash.present?
-      = render partial: '/shared/flash_message'
-    = yield
+    header.sticky-top
+      = render partial: '/shared/header'
+    main
+      - if flash.present?
+        = render partial: '/shared/flash_message'
+      = yield

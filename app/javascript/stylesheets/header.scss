@@ -1,0 +1,51 @@
+header {
+  background-color: #2A6392
+}
+
+.logo-image {
+  height: 32px;
+  width: 32px;
+}
+
+.header-title {
+  font-family: 'Baskerville';
+  font-weight: 600;
+  font-size: 28px;
+  font-style: italic;
+  text-decoration: none;
+  color: #FFF;
+  padding-top: 10px;
+}
+
+a.header-title:hover {
+  color: #FFF;
+}
+
+.button.header-ranking {
+  background-color: #FFF;
+  border-color: transparent;
+  color: #000;
+}
+
+.button.header-record {
+  background-color: #FFF;
+  border-color: transparent;
+  color: #000;
+}
+
+@media screen and ( max-width:767px) {
+  button.navbar-toggler {
+    color: #2A6392;
+  }
+
+  span.navbar-toggler-icon {
+    color: #FFF;
+  }
+}
+
+@media screen and ( min-width:768px) {
+  .nav-header {
+    height: 64px;
+    vertical-align: middle;
+  }
+}
