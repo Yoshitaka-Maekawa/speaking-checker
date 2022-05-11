@@ -4,7 +4,7 @@ var ctx = document.getElementById("myChart");
 var chart_params = {
   type: 'radar',
   data: {
-    labels: [`発音正確度合 ${gon.accuracy_score}点`, `発音流暢度合 ${gon.fluency_score}点`, `発音完成度合 ${gon.completeness_score}点`],
+    labels: [`発音の正確さ ${gon.accuracy_score}点`, `発音の流暢さ ${gon.fluency_score}点`, `発音の完成度 ${gon.completeness_score}点`],
     datasets: [{
       backgroundColor: "rgba(236, 23, 183,0.5)",
       borderColor: "rgba(245, 40, 150,1)",
