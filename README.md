@@ -23,17 +23,17 @@ https://www.speaking-checker.com/
 ## 主なページと機能紹介
 | Topページ | 英文発音ページ |
 | ---- | ---- |
-| [![Image from Gyazo](https://i.gyazo.com/24b0fedc570c0cebf46fdb07c1459740.png)](https://gyazo.com/24b0fedc570c0cebf46fdb07c1459740) | [![Image from Gyazo](https://i.gyazo.com/876355557a0294a2028cd02885432258.png)](https://gyazo.com/876355557a0294a2028cd02885432258) |
+| [![Image from Gyazo](https://i.gyazo.com/703d29fb35b30452e265df944c7e0422.png)](https://gyazo.com/703d29fb35b30452e265df944c7e0422) | [![Image from Gyazo](https://i.gyazo.com/876355557a0294a2028cd02885432258.gif)](https://gyazo.com/876355557a0294a2028cd02885432258) |
 | 用意された英文を発音していくゲームモードと、自作の英文の発音精度を確認できる2種類あります。 | 英文を発音していただき、発音精度の診断結果から次の問題へ進めるかを判断しています。発音がわからない場合でもサンプルボイスを用意しています。 |
 
 | 最終結果ページ | 英文作成ページ |
 | ---- | ---- |
-| [![Image from Gyazo](https://i.gyazo.com/2949f2710e14b902b7e08d2ec6ab1f7e.png)](https://gyazo.com/2949f2710e14b902b7e08d2ec6ab1f7e) | [![Image from Gyazo](https://i.gyazo.com/6f9ed27d64f100f5b964804393a2f670.png)](https://gyazo.com/6f9ed27d64f100f5b964804393a2f670) |
+| [![Image from Gyazo](https://i.gyazo.com/2949f2710e14b902b7e08d2ec6ab1f7e.gif)](https://gyazo.com/2949f2710e14b902b7e08d2ec6ab1f7e) | [![Image from Gyazo](https://i.gyazo.com/6f9ed27d64f100f5b964804393a2f670.gif)](https://gyazo.com/6f9ed27d64f100f5b964804393a2f670) |
 | 進められた問題数に応じて、最終的な発音のランクを表示しています。発音を少しでも改善できるようにYouTube動画を提案しています。 | 英文を作成することが可能です。ユーザーが発音を確認したい英文も発音精度を診断してくれます。 |
 
 | 発音履歴ページ | ランキングページ |
 | ---- | ---- |
-| [![Image from Gyazo](https://i.gyazo.com/cacfa334340f03600ac0ac883a3b6a7d.png)](https://gyazo.com/cacfa334340f03600ac0ac883a3b6a7d) | [![Image from Gyazo](https://i.gyazo.com/4ef9c66edc0b70309cd68a3c91bb6085.png)](https://gyazo.com/4ef9c66edc0b70309cd68a3c91bb6085) |
+| [![Image from Gyazo](https://i.gyazo.com/cacfa334340f03600ac0ac883a3b6a7d.gif)](https://gyazo.com/cacfa334340f03600ac0ac883a3b6a7d) | [![Image from Gyazo](https://i.gyazo.com/4ef9c66edc0b70309cd68a3c91bb6085.gif)](https://gyazo.com/4ef9c66edc0b70309cd68a3c91bb6085) |
 | 今まで発音した英文とその結果をカレンダー形式で振り返ることができます。 | ゲームモードで用意されている英文の発音精度をランキングで表示させてます。 |
 
 ## 使用技術
