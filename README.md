@@ -23,7 +23,7 @@ https://www.speaking-checker.com/
 ## 主なページと機能紹介
 | Topページ | 英文発音ページ |
 | ---- | ---- |
-| [![Image from Gyazo](https://i.gyazo.com/703d29fb35b30452e265df944c7e0422.png)](https://gyazo.com/703d29fb35b30452e265df944c7e0422) | [![Image from Gyazo](https://i.gyazo.com/876355557a0294a2028cd02885432258.gif)](https://gyazo.com/876355557a0294a2028cd02885432258) |
+| [![Image from Gyazo](https://i.gyazo.com/b38c76ef3768beb2a59a59cd9a49c605.png)](https://gyazo.com/b38c76ef3768beb2a59a59cd9a49c605) | [![Image from Gyazo](https://i.gyazo.com/876355557a0294a2028cd02885432258.gif)](https://gyazo.com/876355557a0294a2028cd02885432258) |
 | 用意された英文を発音していくゲームモードと、自作の英文の発音精度を確認できる2種類あります。 | 英文を発音していただき、発音精度の診断結果から次の問題へ進めるかを判断しています。発音がわからない場合でもサンプルボイスを用意しています。 |
 
 | 最終結果ページ | 英文作成ページ |
@@ -52,3 +52,5 @@ YouTube Data API
 
 ## ER図
 [![Image from Gyazo](https://i.gyazo.com/9021adbf4887e67fb5e595c6586897bb.png)](https://gyazo.com/9021adbf4887e67fb5e595c6586897bb)
+
+https://drive.google.com/file/d/1R5XKx37M92r2x-g4nI9asEQkzH_AvX69/view?usp=sharing
