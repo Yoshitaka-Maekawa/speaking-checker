@@ -18,6 +18,7 @@ new Vue({
     // 録音を開始するメソッド。startRecording() {~} は startRecording: functioon() {~}と同じ意味
     startRecording() {
       this.status = 'recording';
+      $('#button-start').remove();
       $('.fa-microphone').hide();
       $('.fa-spinner').show();
       if (gon.question_phase == "original" || gon.question_phase == 1) {
@@ -150,23 +151,23 @@ new Vue({
                 twitter.href = tweet;
 
                 $("#question-text").addClass('mt-2');
-                $("#button-start").replaceWith('<h4 class="comment_result mt-3">あなたの発音レベルは...</h4>');
+                $("#button-record").replaceWith('<h4 class="comment_result mt-3">あなたの発音レベルは...</h4>');
                 $(".comment_result").after(`<h2 class="comment_${rank_id} my-3" id="comment">${evaluation}</h2>`);
                 $('.button-tweet').show();
               } else {
                 if (pron_score >= 90.00) {
-                  $("#button-start").after('<h1 class="comment_clear my-4">クリア!</h1>');
+                  $("#button-record").after('<h1 class="comment_clear my-4">クリア!</h1>');
                   if (gon.question_phase == 10) {
                     $('.final_result').show();
                   } else {
                     $('.next_question').show();
                   }
                 } else {
-                  $("#button-start").after('<h2 class="comment_gameover my-4">ゲームオーバー!</h2>');
+                  $("#button-record").after('<h2 class="comment_gameover my-4">ゲームオーバー!</h2>');
                   $(".comment_gameover").after('<h4 class="comment_nextgame my-4">めのまえが まっくらに なった!</h4>');
                   $('.final_result').show();
                 }
-                $("#button-start").replaceWith('<h4 class="comment_result mt-3">この問題の判定結果は...</h4>');
+                $("#button-record").replaceWith('<h4 class="comment_result mt-3">この問題の判定結果は...</h4>');
               }
               $(".comment_text").hide();
               $('#button-voice').show();
@@ -182,7 +183,7 @@ new Vue({
             })
             .fail(() => {
               $('#button-voice').remove();
-              $('#button-start').replaceWith('<button class="btn btn-lg btn-secondary mt-5 mb-4" type="button" disabled=true >ページを読み込み直してください</button>');
+              $('#button-record').replaceWith('<button class="btn btn-lg btn-secondary mt-5 mb-4" type="button" disabled=true >ページを読み込み直してください</button>');
               alert(`問題文と異なる英文${e.result.text}を認識しました。問題文と異なる英文は採点できないことをご容赦の上、ページを再読み込みしていただき、再度発音をお願いします。`);
               recognizer.stopContinuousRecognitionAsync();
             });
@@ -236,7 +237,7 @@ new Vue({
       );
 
       setTimeout(() => {
-        this.status = 'finish_recording';
+        this.status = 'ready';
         $('#button-voice').show();
       }, 3000);
     },
