@@ -47,7 +47,7 @@ https://www.speaking-checker.com/
 - JavaScript(jQuery)
 
 ### 外部API
-Microsoft Speaker Recognition API
+Azure Cognitive Services「Speech to Text API」
 YouTube Data API
 
 ## ER図
