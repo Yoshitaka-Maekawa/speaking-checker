@@ -47,8 +47,8 @@ https://www.speaking-checker.com/
 - JavaScript(jQuery)
 
 ### 外部API
-Azure Cognitive Services「Speech to Text API」
-YouTube Data API
+- Azure Cognitive Services「Speech to Text API」
+- YouTube Data API
 
 ## ER図
 [![Image from Gyazo](https://i.gyazo.com/9021adbf4887e67fb5e595c6586897bb.png)](https://gyazo.com/9021adbf4887e67fb5e595c6586897bb)
