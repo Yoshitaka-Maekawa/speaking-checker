@@ -51,6 +51,6 @@ https://www.speaking-checker.com/
 - YouTube Data API
 
 ## ER図
-[![Image from Gyazo](https://i.gyazo.com/9021adbf4887e67fb5e595c6586897bb.png)](https://gyazo.com/9021adbf4887e67fb5e595c6586897bb)
+[![Image from Gyazo](https://i.gyazo.com/bb6b24a7924e1e62bc87d9a10d1db8c6.png)](https://gyazo.com/bb6b24a7924e1e62bc87d9a10d1db8c6.png)
 
 https://drive.google.com/file/d/1R5XKx37M92r2x-g4nI9asEQkzH_AvX69/view?usp=sharing
