@@ -2,7 +2,6 @@ class TotalResult < ApplicationRecord
   belongs_to :rank
   belongs_to :user
   has_many :recording_results
-  validates :rank_id, presence: true
 
   def judge_phase(phase: , score: )
     (phase == 10 && score >= 90) ? 10 : phase - 1

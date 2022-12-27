@@ -77,7 +77,7 @@ end
 
 Question.seed do |s|
   s.id = 12
-  s.english_text = "Could you open the door, please?"
+  s.english_text = "Could you open the door please?"
   s.meaning = "ドアを開けてくれませんか?"
   s.phase = 3
 end

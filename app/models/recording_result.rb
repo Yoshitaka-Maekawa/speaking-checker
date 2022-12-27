@@ -1,3 +1,5 @@
+require 'humanize'
+
 class RecordingResult < ApplicationRecord
   include ConversionHelper
   belongs_to :question
@@ -8,6 +10,12 @@ class RecordingResult < ApplicationRecord
   validates :accuracy_score, presence: true
   validates :fluency_score, presence: true
   validates :completeness_score, presence: true
+
+  def fetch_attributes(params)
+    fetch_transcribed_parameter(params)
+    judge_rank
+    judge_question_id
+  end
 
   def fetch_transcribed_parameter(object)
     object.reverse!.slice!(0, 9)
@@ -54,7 +62,7 @@ class RecordingResult < ApplicationRecord
   def change_integer_into_string(object)
     english_array = object.split.map do |string|
       next string if (string.to_i != 0 && string.include?("/"))
-      next to_english(string.to_i) if (string.to_i != 0 || string == "0")
+      next string.to_i.humanize if (string.to_i != 0 || string == "0")
       next "divided by" if string == "/"
       string
     end
