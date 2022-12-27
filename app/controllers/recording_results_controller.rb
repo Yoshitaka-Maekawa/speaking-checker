@@ -10,9 +10,7 @@ class RecordingResultsController < ApplicationController
   def create
     @result = RecordingResult.new
     transcribed_result = +params.to_unsafe_h.first[1].first[0]  # 文字列を解凍するために先頭に+をつけている
-    @result.fetch_transcribed_parameter(transcribed_result)
-    @result.judge_rank
-    @result.judge_question_id
+    @result.fetch_attributes(transcribed_result)
     @result.total_result_id = session[:total_result]["id"]
     music = @result.judge_sound(@result.question.phase)
 

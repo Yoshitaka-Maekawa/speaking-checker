@@ -4,8 +4,8 @@ class TotalResultsController < ApplicationController
 
   def show
     @total_result = current_user.total_results.find(params[:id])
-    @total_phase = @total_result.recording_results.map { |result| result.question.phase_before_type_cast }
-    @cleared_number = @total_result.judge_phase(phase: @total_phase.uniq.count, score: @total_result.recording_results.last.average_score)
+    total_phase = @total_result.recording_results.map { |result| result.question.phase_before_type_cast }
+    @cleared_number = @total_result.judge_phase(phase: total_phase.uniq.count, score: @total_result.recording_results.last.average_score)
     @total_result.judge_rank(@cleared_number)
 
     hash = Hash.new
